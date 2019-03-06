@@ -15,7 +15,20 @@ const TASKS: Array<Task> = [
 @Injectable()
 
 export class TaskService{
-      public getTasks(): Array<Task>{
-        return TASKS;
+
+  public getTasks(): Promise<Task[]>{
+    let promise = new Promise(function(resolve, reject){
+      if(TASKS.length > 0){
+        setTimeout(function(){
+          resolve(TASKS);
+        }, 2000);
+        
+      }else{
+        let error_msg = "NAO HA TAREFAS";
+        reject(error_msg)
       }
+    })
+    return promise;  
+  }
+      
 }
