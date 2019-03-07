@@ -17,17 +17,15 @@ const TASKS: Array<Task> = [
 export class TaskService{
 
   public getTasks(): Promise<Task[]>{
-    let promise = new Promise(function(resolve, reject){
+    let promise = new Promise((resolve, reject) => {
       if(TASKS.length > 0){
-        setTimeout(function(){
-          resolve(TASKS);
-        }, 2000);
-        
+        resolve(TASKS);
       }else{
         let error_msg = "NAO HA TAREFAS";
         reject(error_msg)
       }
     })
+
     return promise;  
   }
       
