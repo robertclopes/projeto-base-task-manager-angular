@@ -32,8 +32,11 @@ export class TaskService{
     return Promise.resolve(TASKS.slice(0, 3));
   }
 
-  public gestTask(id: number): Promise<Task>{
-    return this.getTasks()
-      .then(tasks => tasks.find(task => task.id === id))
+  public gestTask(id: number): Observable<Task>{
+
+    let url = `${this.tasksUrl}/${id}`;
+
+    return this.http.get(url)
+      .map((response: Response) => response.json().data as Task)
   }
 }
